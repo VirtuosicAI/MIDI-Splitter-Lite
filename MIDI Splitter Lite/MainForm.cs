@@ -531,33 +531,27 @@ namespace MIDI_Splitter_Lite
             abortSplittingToolStripMenuItem.Enabled = false;
             optionsToolStripMenuItem.Enabled = true;
 
+            trackNumberList.Clear();
+            trackNamesList.Clear();
+            progressBar.Value = 0;
+
             GC.Collect();
 
             if (BGWorkerExMessage != "")
             {
-                trackNumberList.Clear();
-                trackNamesList.Clear();
-                goal = 0;
-                progressBar.Value = 0;
                 MessageBox.Show(this, "Error: " + BGWorkerExMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 BGWorkerExMessage = "";
             }
             else if (e.Cancelled)
             {
-                trackNumberList.Clear();
-                trackNamesList.Clear();
-                goal = 0;
-                progressBar.Value = 0;
                 MessageBox.Show(this, "Splitting aborted.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                trackNumberList.Clear();
-                trackNamesList.Clear();
-                progressBar.Value = 0;
                 MessageBox.Show(this, "Successfully splitted " + goal.ToString() + " track(s).", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                goal = 0;
             }
+
+            goal = 0;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
