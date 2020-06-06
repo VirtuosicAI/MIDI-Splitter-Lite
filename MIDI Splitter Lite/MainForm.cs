@@ -573,7 +573,7 @@ namespace MIDI_Splitter_Lite
             }
             else
             {
-                MessageBox.Show(this, "Successfully splitted " + goal.ToString() + " track(s).", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Successfully split " + goal.ToString() + " track(s).", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             goal = 0;
