@@ -25,7 +25,6 @@ namespace MIDI_Splitter_Lite
         public MainForm()
         {
             InitializeComponent();
-            PreventSleepAndMonitorOff();
         }
 
         // Prevent the system from entering sleep and turning off monitor.
@@ -299,6 +298,8 @@ namespace MIDI_Splitter_Lite
 
                 backgroundWorker.RunWorkerAsync();
 
+                PreventSleepAndMonitorOff();
+
                 splitToolStripMenuItem.Enabled = false;
                 abortSplittingToolStripMenuItem.Enabled = true;
                 optionsToolStripMenuItem.Enabled = false;
@@ -524,6 +525,8 @@ namespace MIDI_Splitter_Lite
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            AllowSleep();
+
             splitToolStripMenuItem.Enabled = true;
             abortSplittingToolStripMenuItem.Enabled = false;
             optionsToolStripMenuItem.Enabled = true;
