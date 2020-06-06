@@ -25,6 +25,8 @@ namespace MIDI_Splitter_Lite
         public MainForm()
         {
             InitializeComponent();
+
+            ExportPathBox.Text = Settings.Default.ExportPath;
         }
 
         // Prevent the system from entering sleep and turning off monitor.
@@ -308,6 +310,11 @@ namespace MIDI_Splitter_Lite
 
         private void ExportBTN_Click(object sender, EventArgs e)
         {
+            if (Directory.Exists(ExportPathBox.Text))
+            {
+                ExportBrowserDialog.SelectedPath = ExportPathBox.Text;
+            }
+
             if(ExportBrowserDialog.ShowDialog() == DialogResult.OK)
                 ExportPathBox.Text = ExportBrowserDialog.SelectedPath;
         }
@@ -738,6 +745,12 @@ namespace MIDI_Splitter_Lite
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             AllowSleep();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Default.ExportPath = ExportPathBox.Text;
+            Settings.Default.Save();
         }
     }
 }

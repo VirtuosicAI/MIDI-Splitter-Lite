@@ -58,13 +58,15 @@
             // 
             // menuStrip
             // 
+            this.menuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(479, 24);
+            this.menuStrip.Size = new System.Drawing.Size(718, 35);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -77,45 +79,45 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // splitToolStripMenuItem
             // 
             this.splitToolStripMenuItem.Name = "splitToolStripMenuItem";
-            this.splitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.splitToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.splitToolStripMenuItem.Text = "Split track(s)";
             this.splitToolStripMenuItem.Click += new System.EventHandler(this.splitToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
             // 
             // abortSplittingToolStripMenuItem
             // 
             this.abortSplittingToolStripMenuItem.Enabled = false;
             this.abortSplittingToolStripMenuItem.Name = "abortSplittingToolStripMenuItem";
-            this.abortSplittingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abortSplittingToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.abortSplittingToolStripMenuItem.Text = "Abort splitting";
             this.abortSplittingToolStripMenuItem.Click += new System.EventHandler(this.abortSplittingToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(229, 34);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
             this.optionsToolStripMenuItem.Text = "Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -124,48 +126,52 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(164, 34);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 32);
+            this.label1.Location = new System.Drawing.Point(18, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(77, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "MIDI File:";
             // 
             // MIDIPathBox
             // 
-            this.MIDIPathBox.Location = new System.Drawing.Point(70, 29);
+            this.MIDIPathBox.Location = new System.Drawing.Point(105, 45);
+            this.MIDIPathBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MIDIPathBox.Name = "MIDIPathBox";
             this.MIDIPathBox.ReadOnly = true;
-            this.MIDIPathBox.Size = new System.Drawing.Size(316, 20);
+            this.MIDIPathBox.Size = new System.Drawing.Size(472, 26);
             this.MIDIPathBox.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 61);
+            this.label2.Location = new System.Drawing.Point(18, 94);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(99, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Output Path:";
             // 
             // ExportPathBox
             // 
-            this.ExportPathBox.Location = new System.Drawing.Point(85, 58);
+            this.ExportPathBox.Location = new System.Drawing.Point(128, 89);
+            this.ExportPathBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExportPathBox.Name = "ExportPathBox";
             this.ExportPathBox.ReadOnly = true;
-            this.ExportPathBox.Size = new System.Drawing.Size(301, 20);
+            this.ExportPathBox.Size = new System.Drawing.Size(450, 26);
             this.ExportPathBox.TabIndex = 4;
             // 
             // MIDIListView
@@ -176,9 +182,11 @@
             this.TrackSize});
             this.MIDIListView.FullRowSelect = true;
             this.MIDIListView.GridLines = true;
-            this.MIDIListView.Location = new System.Drawing.Point(12, 85);
+            this.MIDIListView.HideSelection = false;
+            this.MIDIListView.Location = new System.Drawing.Point(18, 131);
+            this.MIDIListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MIDIListView.Name = "MIDIListView";
-            this.MIDIListView.Size = new System.Drawing.Size(454, 156);
+            this.MIDIListView.Size = new System.Drawing.Size(679, 238);
             this.MIDIListView.TabIndex = 5;
             this.MIDIListView.UseCompatibleStateImageBehavior = false;
             this.MIDIListView.View = System.Windows.Forms.View.Details;
@@ -202,9 +210,10 @@
             // 
             // BrowseBTN
             // 
-            this.BrowseBTN.Location = new System.Drawing.Point(392, 27);
+            this.BrowseBTN.Location = new System.Drawing.Point(588, 42);
+            this.BrowseBTN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BrowseBTN.Name = "BrowseBTN";
-            this.BrowseBTN.Size = new System.Drawing.Size(75, 23);
+            this.BrowseBTN.Size = new System.Drawing.Size(112, 35);
             this.BrowseBTN.TabIndex = 6;
             this.BrowseBTN.Text = "Browse";
             this.BrowseBTN.UseVisualStyleBackColor = true;
@@ -212,9 +221,10 @@
             // 
             // ExportBTN
             // 
-            this.ExportBTN.Location = new System.Drawing.Point(392, 56);
+            this.ExportBTN.Location = new System.Drawing.Point(588, 86);
+            this.ExportBTN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExportBTN.Name = "ExportBTN";
-            this.ExportBTN.Size = new System.Drawing.Size(75, 23);
+            this.ExportBTN.Size = new System.Drawing.Size(112, 35);
             this.ExportBTN.TabIndex = 7;
             this.ExportBTN.Text = "Export";
             this.ExportBTN.UseVisualStyleBackColor = true;
@@ -223,9 +233,10 @@
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.Location = new System.Drawing.Point(0, 250);
+            this.progressBar.Location = new System.Drawing.Point(0, 385);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(479, 23);
+            this.progressBar.Size = new System.Drawing.Size(718, 35);
             this.progressBar.TabIndex = 10;
             // 
             // OpenMIDIDialog
@@ -243,9 +254,9 @@
             // MainForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 273);
+            this.ClientSize = new System.Drawing.Size(718, 420);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.ExportBTN);
             this.Controls.Add(this.BrowseBTN);
@@ -258,10 +269,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MIDI Splitter Lite";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
