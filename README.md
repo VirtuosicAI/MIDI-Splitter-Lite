@@ -1,5 +1,7 @@
 # MIDI Splitter Lite
 
+![Program Screenshot](program_screenshot.png)
+
 Overview
 ------------
 
