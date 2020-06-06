@@ -304,6 +304,8 @@ namespace MIDI_Splitter_Lite
                 splitToolStripMenuItem.Enabled = false;
                 abortSplittingToolStripMenuItem.Enabled = true;
                 optionsToolStripMenuItem.Enabled = false;
+                BrowseBTN.Enabled = false;
+                ExportBTN.Enabled = false;
             }
         }
 
@@ -550,6 +552,8 @@ namespace MIDI_Splitter_Lite
             splitToolStripMenuItem.Enabled = true;
             abortSplittingToolStripMenuItem.Enabled = false;
             optionsToolStripMenuItem.Enabled = true;
+            BrowseBTN.Enabled = true;
+            ExportBTN.Enabled = true;
 
             trackNumberList.Clear();
             trackNamesList.Clear();
