@@ -585,7 +585,7 @@ namespace MIDI_Splitter_Lite
         private void MainForm_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.None;
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (!backgroundWorker.IsBusy && e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] data = (string[])e.Data.GetData(DataFormats.FileDrop);
                 if (Path.GetExtension(data[0]) == ".mid" && data.Length == 1)
