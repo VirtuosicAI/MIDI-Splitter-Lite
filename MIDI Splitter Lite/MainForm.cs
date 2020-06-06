@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MIDI_Splitter_Lite.Properties;
+using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace MIDI_Splitter_Lite
 {
@@ -298,6 +299,8 @@ namespace MIDI_Splitter_Lite
                 }
                 goal = trackNumberList.Count();
 
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+
                 backgroundWorker.RunWorkerAsync();
 
                 PreventSleepAndMonitorOff();
@@ -540,6 +543,7 @@ namespace MIDI_Splitter_Lite
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
+            TaskbarManager.Instance.SetProgressValue(e.ProgressPercentage, 100);
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -554,6 +558,7 @@ namespace MIDI_Splitter_Lite
             trackNumberList.Clear();
             trackNamesList.Clear();
             progressBar.Value = 0;
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
 
             GC.Collect();
 
