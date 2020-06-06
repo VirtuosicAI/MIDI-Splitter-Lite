@@ -366,6 +366,12 @@ namespace MIDI_Splitter_Lite
                             {
                                 if ((i + 1) == trackNumberList.ElementAt(0))
                                 {
+                                    MethodInvoker displayCurrentTrack = delegate
+                                    {
+                                        this.Text = "MIDI Splitter Lite | Splitting '" + trackNamesList.ElementAt(0) + "'";
+                                    };
+                                    this.Invoke(displayCurrentTrack);
+
                                     byte[] trackHeader = new byte[4];
                                     midiReader.Read(trackHeader, 0, trackHeader.Length);
 
@@ -449,6 +455,12 @@ namespace MIDI_Splitter_Lite
                             {
                                 if ((i + 1) == trackNumberList.ElementAt(0))
                                 {
+                                    MethodInvoker displayCurrentTrack = delegate
+                                    {
+                                        this.Text = "MIDI Splitter Lite | Splitting '" + trackNamesList.ElementAt(0) + "'";
+                                    };
+                                    this.Invoke(displayCurrentTrack);
+
                                     byte[] trackHeader = new byte[4];
                                     midiReader.Read(trackHeader, 0, trackHeader.Length);
 
@@ -527,6 +539,7 @@ namespace MIDI_Splitter_Lite
         {
             AllowSleep();
 
+            this.Text = "MIDI Splitter Lite";
             splitToolStripMenuItem.Enabled = true;
             abortSplittingToolStripMenuItem.Enabled = false;
             optionsToolStripMenuItem.Enabled = true;
