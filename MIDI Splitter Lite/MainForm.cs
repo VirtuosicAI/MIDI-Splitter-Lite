@@ -528,6 +528,8 @@ namespace MIDI_Splitter_Lite
             abortSplittingToolStripMenuItem.Enabled = false;
             optionsToolStripMenuItem.Enabled = true;
 
+            GC.Collect();
+
             if (BGWorkerExMessage != "")
             {
                 trackNumberList.Clear();
