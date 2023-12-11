@@ -70,5 +70,82 @@ namespace MIDI_Splitter_Lite.Properties {
                 this["FilePrefixBox"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Green {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Green"]));
+            }
+            set {
+                this["Green"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Purple {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Purple"]));
+            }
+            set {
+                this["Purple"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Red {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Red"]));
+            }
+            set {
+                this["Red"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Orange {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Orange"]));
+            }
+            set {
+                this["Orange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Yellow {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Yellow"]));
+            }
+            set {
+                this["Yellow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection LightBlue {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["LightBlue"]));
+            }
+            set {
+                this["LightBlue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Blue {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Blue"]));
+            }
+            set {
+                this["Blue"] = value;
+            }
+        }
     }
 }

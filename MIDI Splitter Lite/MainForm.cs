@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using MIDI_Splitter_Lite.Properties;
 using Microsoft.WindowsAPICodePack.Taskbar;
+using System.Drawing;
 
 namespace MIDI_Splitter_Lite
 {
@@ -16,12 +17,35 @@ namespace MIDI_Splitter_Lite
         List<ushort> trackNumberList = new List<ushort>();
         List<string> trackNamesList = new List<string>();
 
+        private readonly string[] redInstruments = new string[Settings.Default.Red.Count];
+        private readonly string[] orangeInstruments = new string[Settings.Default.Orange.Count];
+        private readonly string[] yellowInstruments = new string[Settings.Default.Yellow.Count];
+        private readonly string[] greenInstruments = new string[Settings.Default.Green.Count];
+        private readonly string[] lightBlueInstruments = new string[Settings.Default.LightBlue.Count];
+        private readonly string[] blueInstruments = new string[Settings.Default.Blue.Count];
+        private readonly string[] purpleInstruments = new string[Settings.Default.Purple.Count];
+
         int goal = 0;
         string BGWorkerExMessage = "";
 
         public MainForm()
         {
             InitializeComponent();
+
+            System.Collections.Specialized.StringCollection red = Settings.Default.Red;
+            red.CopyTo(redInstruments, 0);
+            System.Collections.Specialized.StringCollection orange = Settings.Default.Orange;
+            orange.CopyTo(orangeInstruments, 0);
+            System.Collections.Specialized.StringCollection yellow = Settings.Default.Yellow;
+            yellow.CopyTo(yellowInstruments, 0);
+            System.Collections.Specialized.StringCollection green = Settings.Default.Green;
+            green.CopyTo(greenInstruments,0);
+            System.Collections.Specialized.StringCollection lightBlue = Settings.Default.LightBlue;
+            lightBlue.CopyTo(lightBlueInstruments, 0);
+            System.Collections.Specialized.StringCollection blue = Settings.Default.Blue;
+            blue.CopyTo(blueInstruments, 0);
+            System.Collections.Specialized.StringCollection purple = Settings.Default.Purple;
+            purple.CopyTo(purpleInstruments, 0);
 
             ExportPathBox.Text = Settings.Default.ExportPath;
         }
@@ -230,8 +254,8 @@ namespace MIDI_Splitter_Lite
                                 string[] newRow = { (i + 1).ToString(), trackNameStr, trackSizeInt.ToString() };
                                 ListViewItem newItem = new ListViewItem(newRow);
                                 MIDIListView.Items.Add(newItem);
-
                             }
+                            UpdateListViewColors();
                         }
                         else
                         {
@@ -252,6 +276,7 @@ namespace MIDI_Splitter_Lite
                                 ListViewItem newItem = new ListViewItem(newRow);
                                 MIDIListView.Items.Add(newItem);
                             }
+                            UpdateListViewColors();
                         }
                     }
                 }   
@@ -755,8 +780,8 @@ namespace MIDI_Splitter_Lite
                             string[] newRow = { (i + 1).ToString(), trackNameStr, trackSizeInt.ToString() };
                             ListViewItem newItem = new ListViewItem(newRow);
                             MIDIListView.Items.Add(newItem);
-
                         }
+                        UpdateListViewColors();
                     }
                     else
                     {
@@ -777,9 +802,49 @@ namespace MIDI_Splitter_Lite
                             ListViewItem newItem = new ListViewItem(newRow);
                             MIDIListView.Items.Add(newItem);
                         }
+                        UpdateListViewColors();
                     }
                 }
             }         
+        }
+
+        private Color GetRowColorBasedOnInstrument(string instrumentName)
+        {
+            var categories = new Dictionary<Color, string[]>()
+            {
+                { Color.Red, redInstruments },
+                { Color.Orange, orangeInstruments },
+                { Color.Yellow, yellowInstruments },
+                { Color.Green, greenInstruments },
+                { Color.LightBlue, lightBlueInstruments },
+                { Color.Blue, blueInstruments },
+                { Color.Purple, purpleInstruments }
+            };
+
+            var bestMatch = (Color: Color.White, Length: 0);
+
+            foreach (var category in categories)
+            {
+                foreach (var instrument in category.Value)
+                {
+                    if (instrumentName.Contains(instrument) && instrument.Length > bestMatch.Length)
+                    {
+                        bestMatch = (category.Key, instrument.Length);
+                    }
+                }
+            }
+
+            return bestMatch.Color;
+        }
+
+        private void UpdateListViewColors()
+        {
+            foreach (ListViewItem item in MIDIListView.Items)
+            {
+                string instrumentName = item.SubItems[1].Text.ToLower();
+                Color rowColor = GetRowColorBasedOnInstrument(instrumentName);
+                item.BackColor = rowColor;
+            }
         }
 
         private void MIDIListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
