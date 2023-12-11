@@ -18,13 +18,13 @@ Usage
 	- First Track Duplication: Opt to duplicate the initial track from the MIDI file onto all selected tracks for export. This feature is especially handy when the first track contains crucial setup information like tempo, which you might want to replicate across other tracks.
 
 	- Track Name Reading: Enable the functionality to read and display names for every track within the MIDI file. This setting is designed to be efficient and should not significantly impact the file's loading time.
-		- Note: Should you alter the 'Read track names' setting, it's recommended to reload the MIDI file to ensure the changes are effectively applied. <br>
 
 	- File Name Prefixing: Choose to prepend the original MIDI file's name to each track. This option is useful for maintaining a reference to the original file when working with multiple tracks.
 
 	- Color-Coded Track Naming: Personalize your tracks by assigning specific colors to them. Simply input the desired names for your tracks and choose the color you want them to be.
 
 	- Edit Track Names: Before splitting the tracks into individual tracks right click them to edit their names.
+		- Note: Should you alter any settings, you need to reload the MIDI file to ensure the changes are effectively applied. <br>
 
 4. Once the list is populated with tracks, select the track(s) you wish to be exported. To select multiple tracks, simply hold the CTRL key on your keyboard and left-click each track name in the list. You can also select all tracks in the list by pressing CTRL + A on your keyboard.
 
