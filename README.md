@@ -14,8 +14,15 @@ Usage
 
 2. Click the "Export" button next to the box labeled "Output Path:" and select the desired folder the MIDI tracks will be extracted to.
 
-3. **Optional:** In the options menu, you can choose whether or not to copy the first track of the MIDI file to the selected tracks that are being exported. This may be useful if the first track is a setup track containing tempo and may wish to copy this information over. You can also choose whether or not to read the names of every track in the MIDI file (this should not have a considerable effect on load time).
-	- **Note:** Be sure to re-open the MIDI file afterwards when changing the "Read track names" option for it to take effect.
+3. Options:
+	- First Track Duplication: Opt to duplicate the initial track from the MIDI file onto all selected tracks for export. This feature is especially handy when the first track contains crucial setup information like tempo, which you might want to replicate across other tracks.
+
+	- Track Name Reading: Enable the functionality to read and display names for every track within the MIDI file. This setting is designed to be efficient and should not significantly impact the file's loading time.
+		- Note: Should you alter the 'Read track names' setting, it's recommended to reload the MIDI file to ensure the changes are effectively applied. <br><br>
+
+	- File Name Prefixing: Choose to prepend the original MIDI file's name to each track. This option is useful for maintaining a reference to the original file when working with multiple tracks.
+
+	- Color-Coded Track Naming: Personalize your tracks by assigning specific colors (Red, Orange, Yellow, Green, Light Blue, Blue, Purple) to them. Simply input the desired names for your tracks under the color you want them to be.
 
 4. Once the list is populated with tracks, select the track(s) you wish to be exported. To select multiple tracks, simply hold the CTRL key on your keyboard and left-click each track name in the list. You can also select all tracks in the list by pressing CTRL + A on your keyboard.
 
