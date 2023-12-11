@@ -73,78 +73,155 @@ namespace MIDI_Splitter_Lite.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Green {
+        public global::System.Collections.Specialized.StringCollection ColorText4 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Green"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText4"]));
             }
             set {
-                this["Green"] = value;
+                this["ColorText4"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Purple {
+        public global::System.Collections.Specialized.StringCollection ColorText7 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Purple"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText7"]));
             }
             set {
-                this["Purple"] = value;
+                this["ColorText7"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Red {
+        public global::System.Collections.Specialized.StringCollection ColorText1 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Red"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText1"]));
             }
             set {
-                this["Red"] = value;
+                this["ColorText1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Orange {
+        public global::System.Collections.Specialized.StringCollection ColorText2 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Orange"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText2"]));
             }
             set {
-                this["Orange"] = value;
+                this["ColorText2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Yellow {
+        public global::System.Collections.Specialized.StringCollection ColorText3 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Yellow"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText3"]));
             }
             set {
-                this["Yellow"] = value;
+                this["ColorText3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection LightBlue {
+        public global::System.Collections.Specialized.StringCollection ColorText5 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["LightBlue"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText5"]));
             }
             set {
-                this["LightBlue"] = value;
+                this["ColorText5"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Blue {
+        public global::System.Collections.Specialized.StringCollection ColorText6 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Blue"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["ColorText6"]));
             }
             set {
-                this["Blue"] = value;
+                this["ColorText6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color1 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color1"]));
+            }
+            set {
+                this["Color1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color2 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color2"]));
+            }
+            set {
+                this["Color2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color3 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color3"]));
+            }
+            set {
+                this["Color3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color4 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color4"]));
+            }
+            set {
+                this["Color4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color5 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color5"]));
+            }
+            set {
+                this["Color5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color6 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color6"]));
+            }
+            set {
+                this["Color6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Color7 {
+            get {
+                return ((global::System.Drawing.Color)(this["Color7"]));
+            }
+            set {
+                this["Color7"] = value;
             }
         }
     }

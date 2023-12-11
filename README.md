@@ -22,7 +22,7 @@ Usage
 
 	- File Name Prefixing: Choose to prepend the original MIDI file's name to each track. This option is useful for maintaining a reference to the original file when working with multiple tracks.
 
-	- Color-Coded Track Naming: Personalize your tracks by assigning specific colors (Red, Orange, Yellow, Green, Light Blue, Blue, Purple) to them. Simply input the desired names for your tracks under the color you want them to be.
+	- Color-Coded Track Naming: Personalize your tracks by assigning specific colors to them. Simply input the desired names for your tracks and choose the color you want them to be.
 
 	- Edit Track Names: Before splitting the tracks into individual tracks right click them to edit their names.
 

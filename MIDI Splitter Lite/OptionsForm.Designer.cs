@@ -34,20 +34,28 @@
             this.ReadTrackNamesBox = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.FilePrefixBox = new System.Windows.Forms.CheckBox();
-            this.greenTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.redTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.purpleTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox7 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.orangeTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.lightBlueTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.yellowTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox3 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.blueTextBox = new System.Windows.Forms.TextBox();
+            this.colorTextBox6 = new System.Windows.Forms.TextBox();
+            this.colorPicker1 = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colorPicker2 = new System.Windows.Forms.Button();
+            this.colorPicker3 = new System.Windows.Forms.Button();
+            this.colorPicker4 = new System.Windows.Forms.Button();
+            this.colorPicker5 = new System.Windows.Forms.Button();
+            this.colorPicker6 = new System.Windows.Forms.Button();
+            this.colorPicker7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CopyFirstTrackBox
@@ -92,137 +100,221 @@
         "multiple names exists for a given track, the latest one will be shown.");
             this.FilePrefixBox.UseVisualStyleBackColor = true;
             // 
-            // greenTextBox
+            // colorTextBox4
             // 
-            this.greenTextBox.Location = new System.Drawing.Point(12, 211);
-            this.greenTextBox.Name = "greenTextBox";
-            this.greenTextBox.Size = new System.Drawing.Size(168, 20);
-            this.greenTextBox.TabIndex = 3;
+            this.colorTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox4.Location = new System.Drawing.Point(12, 211);
+            this.colorTextBox4.Name = "colorTextBox4";
+            this.colorTextBox4.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox4.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 195);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Green";
+            this.label1.Text = "Color 4";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Red";
+            this.label2.Text = "Color 1";
             // 
-            // redTextBox
+            // colorTextBox1
             // 
-            this.redTextBox.Location = new System.Drawing.Point(12, 94);
-            this.redTextBox.Name = "redTextBox";
-            this.redTextBox.Size = new System.Drawing.Size(168, 20);
-            this.redTextBox.TabIndex = 5;
+            this.colorTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox1.Location = new System.Drawing.Point(12, 94);
+            this.colorTextBox1.Name = "colorTextBox1";
+            this.colorTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox1.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 312);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Purple";
+            this.label3.Text = "Color 7";
             // 
-            // purpleTextBox
+            // colorTextBox7
             // 
-            this.purpleTextBox.Location = new System.Drawing.Point(12, 328);
-            this.purpleTextBox.Name = "purpleTextBox";
-            this.purpleTextBox.Size = new System.Drawing.Size(168, 20);
-            this.purpleTextBox.TabIndex = 7;
+            this.colorTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox7.Location = new System.Drawing.Point(12, 328);
+            this.colorTextBox7.Name = "colorTextBox7";
+            this.colorTextBox7.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox7.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 117);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Orange";
+            this.label4.Text = "Color 2";
             // 
-            // orangeTextBox
+            // colorTextBox2
             // 
-            this.orangeTextBox.Location = new System.Drawing.Point(12, 133);
-            this.orangeTextBox.Name = "orangeTextBox";
-            this.orangeTextBox.Size = new System.Drawing.Size(168, 20);
-            this.orangeTextBox.TabIndex = 9;
+            this.colorTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox2.Location = new System.Drawing.Point(12, 133);
+            this.colorTextBox2.Name = "colorTextBox2";
+            this.colorTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox2.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 234);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Light Blue";
+            this.label5.Text = "Color 5";
             // 
-            // lightBlueTextBox
+            // colorTextBox5
             // 
-            this.lightBlueTextBox.Location = new System.Drawing.Point(12, 250);
-            this.lightBlueTextBox.Name = "lightBlueTextBox";
-            this.lightBlueTextBox.Size = new System.Drawing.Size(168, 20);
-            this.lightBlueTextBox.TabIndex = 13;
+            this.colorTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox5.Location = new System.Drawing.Point(12, 250);
+            this.colorTextBox5.Name = "colorTextBox5";
+            this.colorTextBox5.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox5.TabIndex = 13;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 156);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Yellow";
+            this.label6.Text = "Color 3";
             // 
-            // yellowTextBox
+            // colorTextBox3
             // 
-            this.yellowTextBox.Location = new System.Drawing.Point(12, 172);
-            this.yellowTextBox.Name = "yellowTextBox";
-            this.yellowTextBox.Size = new System.Drawing.Size(168, 20);
-            this.yellowTextBox.TabIndex = 11;
+            this.colorTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox3.Location = new System.Drawing.Point(12, 172);
+            this.colorTextBox3.Name = "colorTextBox3";
+            this.colorTextBox3.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox3.TabIndex = 11;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 273);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Blue";
+            this.label7.Text = "Color 6";
             // 
-            // blueTextBox
+            // colorTextBox6
             // 
-            this.blueTextBox.Location = new System.Drawing.Point(12, 289);
-            this.blueTextBox.Name = "blueTextBox";
-            this.blueTextBox.Size = new System.Drawing.Size(168, 20);
-            this.blueTextBox.TabIndex = 15;
+            this.colorTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorTextBox6.Location = new System.Drawing.Point(12, 289);
+            this.colorTextBox6.Name = "colorTextBox6";
+            this.colorTextBox6.Size = new System.Drawing.Size(100, 20);
+            this.colorTextBox6.TabIndex = 15;
+            // 
+            // colorPicker1
+            // 
+            this.colorPicker1.Location = new System.Drawing.Point(118, 94);
+            this.colorPicker1.Name = "colorPicker1";
+            this.colorPicker1.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker1.TabIndex = 17;
+            this.colorPicker1.Text = "Choose";
+            this.colorPicker1.UseVisualStyleBackColor = true;
+            this.colorPicker1.Click += new System.EventHandler(this.colorPicker1_Click);
+            // 
+            // colorPicker2
+            // 
+            this.colorPicker2.Location = new System.Drawing.Point(118, 133);
+            this.colorPicker2.Name = "colorPicker2";
+            this.colorPicker2.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker2.TabIndex = 18;
+            this.colorPicker2.Text = "Choose";
+            this.colorPicker2.UseVisualStyleBackColor = true;
+            this.colorPicker2.Click += new System.EventHandler(this.colorPicker2_Click);
+            // 
+            // colorPicker3
+            // 
+            this.colorPicker3.Location = new System.Drawing.Point(118, 172);
+            this.colorPicker3.Name = "colorPicker3";
+            this.colorPicker3.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker3.TabIndex = 19;
+            this.colorPicker3.Text = "Choose";
+            this.colorPicker3.UseVisualStyleBackColor = true;
+            this.colorPicker3.Click += new System.EventHandler(this.colorPicker3_Click);
+            // 
+            // colorPicker4
+            // 
+            this.colorPicker4.Location = new System.Drawing.Point(118, 211);
+            this.colorPicker4.Name = "colorPicker4";
+            this.colorPicker4.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker4.TabIndex = 20;
+            this.colorPicker4.Text = "Choose";
+            this.colorPicker4.UseVisualStyleBackColor = true;
+            this.colorPicker4.Click += new System.EventHandler(this.colorPicker4_Click);
+            // 
+            // colorPicker5
+            // 
+            this.colorPicker5.Location = new System.Drawing.Point(118, 250);
+            this.colorPicker5.Name = "colorPicker5";
+            this.colorPicker5.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker5.TabIndex = 21;
+            this.colorPicker5.Text = "Choose";
+            this.colorPicker5.UseVisualStyleBackColor = true;
+            this.colorPicker5.Click += new System.EventHandler(this.colorPicker5_Click);
+            // 
+            // colorPicker6
+            // 
+            this.colorPicker6.Location = new System.Drawing.Point(118, 289);
+            this.colorPicker6.Name = "colorPicker6";
+            this.colorPicker6.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker6.TabIndex = 22;
+            this.colorPicker6.Text = "Choose";
+            this.colorPicker6.UseVisualStyleBackColor = true;
+            this.colorPicker6.Click += new System.EventHandler(this.colorPicker6_Click);
+            // 
+            // colorPicker7
+            // 
+            this.colorPicker7.Location = new System.Drawing.Point(118, 328);
+            this.colorPicker7.Name = "colorPicker7";
+            this.colorPicker7.Size = new System.Drawing.Size(62, 20);
+            this.colorPicker7.TabIndex = 23;
+            this.colorPicker7.Text = "Choose";
+            this.colorPicker7.UseVisualStyleBackColor = true;
+            this.colorPicker7.Click += new System.EventHandler(this.colorPicker7_Click);
             // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(192, 360);
+            this.Controls.Add(this.colorPicker7);
+            this.Controls.Add(this.colorPicker6);
+            this.Controls.Add(this.colorPicker5);
+            this.Controls.Add(this.colorPicker4);
+            this.Controls.Add(this.colorPicker3);
+            this.Controls.Add(this.colorPicker2);
+            this.Controls.Add(this.colorPicker1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.blueTextBox);
+            this.Controls.Add(this.colorTextBox6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.lightBlueTextBox);
+            this.Controls.Add(this.colorTextBox5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.yellowTextBox);
+            this.Controls.Add(this.colorTextBox3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.orangeTextBox);
+            this.Controls.Add(this.colorTextBox2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.purpleTextBox);
+            this.Controls.Add(this.colorTextBox7);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.redTextBox);
+            this.Controls.Add(this.colorTextBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.greenTextBox);
+            this.Controls.Add(this.colorTextBox4);
             this.Controls.Add(this.FilePrefixBox);
             this.Controls.Add(this.ReadTrackNamesBox);
             this.Controls.Add(this.CopyFirstTrackBox);
@@ -245,19 +337,27 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.CheckBox ReadTrackNamesBox;
         private System.Windows.Forms.CheckBox FilePrefixBox;
-        private System.Windows.Forms.TextBox greenTextBox;
+        private System.Windows.Forms.TextBox colorTextBox4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox redTextBox;
+        private System.Windows.Forms.TextBox colorTextBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox purpleTextBox;
+        private System.Windows.Forms.TextBox colorTextBox7;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox orangeTextBox;
+        private System.Windows.Forms.TextBox colorTextBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox lightBlueTextBox;
+        private System.Windows.Forms.TextBox colorTextBox5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox yellowTextBox;
+        private System.Windows.Forms.TextBox colorTextBox3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox blueTextBox;
+        private System.Windows.Forms.TextBox colorTextBox6;
+        private System.Windows.Forms.Button colorPicker1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button colorPicker2;
+        private System.Windows.Forms.Button colorPicker3;
+        private System.Windows.Forms.Button colorPicker4;
+        private System.Windows.Forms.Button colorPicker5;
+        private System.Windows.Forms.Button colorPicker6;
+        private System.Windows.Forms.Button colorPicker7;
     }
 }

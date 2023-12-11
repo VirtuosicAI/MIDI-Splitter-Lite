@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MIDI_Splitter_Lite.Properties;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Drawing;
+using System.Collections.Specialized;
 
 namespace MIDI_Splitter_Lite
 {
@@ -19,13 +20,13 @@ namespace MIDI_Splitter_Lite
 
         private ContextMenuStrip listContextMenu;
 
-        private readonly string[] redInstruments = new string[Settings.Default.Red.Count];
-        private readonly string[] orangeInstruments = new string[Settings.Default.Orange.Count];
-        private readonly string[] yellowInstruments = new string[Settings.Default.Yellow.Count];
-        private readonly string[] greenInstruments = new string[Settings.Default.Green.Count];
-        private readonly string[] lightBlueInstruments = new string[Settings.Default.LightBlue.Count];
-        private readonly string[] blueInstruments = new string[Settings.Default.Blue.Count];
-        private readonly string[] purpleInstruments = new string[Settings.Default.Purple.Count];
+        private readonly string[] instruments1 = new string[Settings.Default.ColorText1?.Count ?? 0];
+        private readonly string[] instruments2 = new string[Settings.Default.ColorText2?.Count ?? 0];
+        private readonly string[] instruments3 = new string[Settings.Default.ColorText3?.Count ?? 0];
+        private readonly string[] instruments4 = new string[Settings.Default.ColorText4?.Count ?? 0];
+        private readonly string[] instruments5 = new string[Settings.Default.ColorText5?.Count ?? 0];
+        private readonly string[] instruments6 = new string[Settings.Default.ColorText6?.Count ?? 0];
+        private readonly string[] instruments7 = new string[Settings.Default.ColorText7?.Count ?? 0];
 
         int goal = 0;
         string BGWorkerExMessage = "";
@@ -34,31 +35,32 @@ namespace MIDI_Splitter_Lite
         {
             InitializeComponent();
 
-            System.Collections.Specialized.StringCollection red = Settings.Default.Red;
-            red.CopyTo(redInstruments, 0);
-            System.Collections.Specialized.StringCollection orange = Settings.Default.Orange;
-            orange.CopyTo(orangeInstruments, 0);
-            System.Collections.Specialized.StringCollection yellow = Settings.Default.Yellow;
-            yellow.CopyTo(yellowInstruments, 0);
-            System.Collections.Specialized.StringCollection green = Settings.Default.Green;
-            green.CopyTo(greenInstruments,0);
-            System.Collections.Specialized.StringCollection lightBlue = Settings.Default.LightBlue;
-            lightBlue.CopyTo(lightBlueInstruments, 0);
-            System.Collections.Specialized.StringCollection blue = Settings.Default.Blue;
-            blue.CopyTo(blueInstruments, 0);
-            System.Collections.Specialized.StringCollection purple = Settings.Default.Purple;
-            purple.CopyTo(purpleInstruments, 0);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText1, instruments1);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText2, instruments2);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText3, instruments3);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText4, instruments4);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText5, instruments5);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText6, instruments6);
+            CopyStringCollectionToStringArray(Settings.Default.ColorText7, instruments7);
 
             ExportPathBox.Text = Settings.Default.ExportPath;
 
             SetupListViewContextMenu();
         }
 
+        private void CopyStringCollectionToStringArray(StringCollection source, string[] destination)
+        {
+            if (source != null)
+            {
+                source.CopyTo(destination, 0);
+            }
+        }
+
         private void SetupListViewContextMenu()
         {
             listContextMenu = new ContextMenuStrip();
             ToolStripMenuItem editItem = new ToolStripMenuItem("Edit name");
-            editItem.Width = 10;
+
             editItem.Click += EditItem_Click;
             listContextMenu.Items.Add(editItem);
             MIDIListView.ContextMenuStrip = listContextMenu;
@@ -869,13 +871,13 @@ namespace MIDI_Splitter_Lite
         {
             var categories = new Dictionary<Color, string[]>()
             {
-                { Color.Red, redInstruments },
-                { Color.Orange, orangeInstruments },
-                { Color.Yellow, yellowInstruments },
-                { Color.Green, greenInstruments },
-                { Color.LightBlue, lightBlueInstruments },
-                { Color.Blue, blueInstruments },
-                { Color.Purple, purpleInstruments }
+                { Settings.Default.Color1, instruments1 },
+                { Settings.Default.Color2, instruments2 },
+                { Settings.Default.Color3, instruments3 },
+                { Settings.Default.Color4, instruments4 },
+                { Settings.Default.Color5, instruments5 },
+                { Settings.Default.Color6, instruments6 },
+                { Settings.Default.Color7, instruments7 }
             };
 
             var bestMatch = (Color: Color.White, Length: 0);
