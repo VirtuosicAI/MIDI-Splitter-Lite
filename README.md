@@ -18,7 +18,7 @@ Usage
 	- First Track Duplication: Opt to duplicate the initial track from the MIDI file onto all selected tracks for export. This feature is especially handy when the first track contains crucial setup information like tempo, which you might want to replicate across other tracks.
 
 	- Track Name Reading: Enable the functionality to read and display names for every track within the MIDI file. This setting is designed to be efficient and should not significantly impact the file's loading time.
-		- Note: Should you alter the 'Read track names' setting, it's recommended to reload the MIDI file to ensure the changes are effectively applied. <br><br>
+		- Note: Should you alter the 'Read track names' setting, it's recommended to reload the MIDI file to ensure the changes are effectively applied. <br>
 
 	- File Name Prefixing: Choose to prepend the original MIDI file's name to each track. This option is useful for maintaining a reference to the original file when working with multiple tracks.
 
