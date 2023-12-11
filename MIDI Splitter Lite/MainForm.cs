@@ -457,7 +457,7 @@ namespace MIDI_Splitter_Lite
 
                                     string baseFileName = Path.GetFileNameWithoutExtension(MIDIPathBox.Text);
                                     string trackName = trackNamesList.ElementAt(0);
-                                    string fileNamePrefix = Settings.Default.FilePrefixBox ? "" : baseFileName + " - ";
+                                    string fileNamePrefix = !Settings.Default.FilePrefixBox ? "" : baseFileName + " - ";
                                     string fileName = Path.Combine(ExportPathBox.Text, fileNamePrefix + trackName + ".mid");
 
                                     if (File.Exists(fileName))
@@ -549,7 +549,7 @@ namespace MIDI_Splitter_Lite
 
                                     string baseFileName = Path.GetFileNameWithoutExtension(MIDIPathBox.Text);
                                     string trackName = trackNamesList.ElementAt(0);
-                                    string fileNamePrefix = Settings.Default.FilePrefixBox ? "" : baseFileName + " - ";
+                                    string fileNamePrefix = !Settings.Default.FilePrefixBox ? "" : baseFileName + " - ";
                                     string fileName = Path.Combine(ExportPathBox.Text, fileNamePrefix + trackName + ".mid");
 
                                     if (File.Exists(fileName))
