@@ -33,6 +33,7 @@
             this.CopyFirstTrackBox = new System.Windows.Forms.CheckBox();
             this.ReadTrackNamesBox = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.FilePrefixBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // CopyFirstTrackBox
@@ -65,11 +66,24 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
+            // FilePrefixBox
+            // 
+            this.FilePrefixBox.AutoSize = true;
+            this.FilePrefixBox.Location = new System.Drawing.Point(12, 58);
+            this.FilePrefixBox.Name = "FilePrefixBox";
+            this.FilePrefixBox.Size = new System.Drawing.Size(132, 17);
+            this.FilePrefixBox.TabIndex = 2;
+            this.FilePrefixBox.Text = "Add file name as prefix";
+            this.toolTip.SetToolTip(this.FilePrefixBox, "Reads the name of each track from the MIDI file and displays it in the list.\r\nIf " +
+        "multiple names exists for a given track, the latest one will be shown.");
+            this.FilePrefixBox.UseVisualStyleBackColor = true;
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(192, 61);
+            this.ClientSize = new System.Drawing.Size(192, 83);
+            this.Controls.Add(this.FilePrefixBox);
             this.Controls.Add(this.ReadTrackNamesBox);
             this.Controls.Add(this.CopyFirstTrackBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -90,5 +104,6 @@
         private System.Windows.Forms.CheckBox CopyFirstTrackBox;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.CheckBox ReadTrackNamesBox;
+        private System.Windows.Forms.CheckBox FilePrefixBox;
     }
 }
