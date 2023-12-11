@@ -17,6 +17,8 @@ namespace MIDI_Splitter_Lite
         List<ushort> trackNumberList = new List<ushort>();
         List<string> trackNamesList = new List<string>();
 
+        private ContextMenuStrip listContextMenu;
+
         private readonly string[] redInstruments = new string[Settings.Default.Red.Count];
         private readonly string[] orangeInstruments = new string[Settings.Default.Orange.Count];
         private readonly string[] yellowInstruments = new string[Settings.Default.Yellow.Count];
@@ -48,6 +50,61 @@ namespace MIDI_Splitter_Lite
             purple.CopyTo(purpleInstruments, 0);
 
             ExportPathBox.Text = Settings.Default.ExportPath;
+
+            SetupListViewContextMenu();
+        }
+
+        private void SetupListViewContextMenu()
+        {
+            listContextMenu = new ContextMenuStrip();
+            ToolStripMenuItem editItem = new ToolStripMenuItem("Edit name");
+            editItem.Width = 10;
+            editItem.Click += EditItem_Click;
+            listContextMenu.Items.Add(editItem);
+            MIDIListView.ContextMenuStrip = listContextMenu;
+        }
+
+        private void MIDIListView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem item = MIDIListView.GetItemAt(e.X, e.Y);
+                if (item != null)
+                {
+                    item.Selected = true;
+                    listContextMenu.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void EditItem_Click(object sender, EventArgs e)
+        {
+            if (MIDIListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = MIDIListView.SelectedItems[0];
+                Rectangle rect = item.SubItems[1].Bounds;
+                TextBox editBox = new TextBox
+                {
+                    Bounds = rect,
+                    Text = item.SubItems[1].Text,
+                    Parent = MIDIListView
+                };
+                editBox.Leave += (s, args) => FinishEditing(item, editBox);
+                editBox.KeyPress += (s, args) =>
+                {
+                    if (args.KeyChar == (char)Keys.Enter)
+                        FinishEditing(item, editBox);
+                };
+                MIDIListView.Controls.Add(editBox);
+                editBox.Focus();
+            }
+        }
+
+        private void FinishEditing(ListViewItem item, TextBox editBox)
+        {
+            item.SubItems[1].Text = editBox.Text;
+            editBox.Dispose();
+            UpdateListViewColors();
         }
 
         // Prevent the system from entering sleep and turning off monitor.
