@@ -432,30 +432,15 @@ namespace MIDI_Splitter_Lite
 
                                     string baseFileName = Path.GetFileNameWithoutExtension(MIDIPathBox.Text);
                                     string trackName = trackNamesList.ElementAt(0);
-                                    string fileName;
-
-                                    if (Settings.Default.FilePrefixBox)
-                                    {
-                                        fileName = Path.Combine(ExportPathBox.Text, trackName + ".mid");
-                                    }
-                                    else
-                                    {
-                                        fileName = Path.Combine(ExportPathBox.Text, baseFileName + " - " + trackName + ".mid");
-                                    }
+                                    string fileNamePrefix = Settings.Default.FilePrefixBox ? "" : baseFileName + " - ";
+                                    string fileName = Path.Combine(ExportPathBox.Text, fileNamePrefix + trackName + ".mid");
 
                                     if (File.Exists(fileName))
                                     {
                                         int counter = 1;
                                         do
                                         {
-                                            if (Settings.Default.FilePrefixBox)
-                                            {
-                                                fileName = Path.Combine(ExportPathBox.Text, trackName + " (Copy " + counter.ToString() + ").mid");
-                                            }
-                                            else
-                                            {
-                                                fileName = Path.Combine(ExportPathBox.Text, baseFileName + " - " + trackName + " (Copy " + counter.ToString() + ").mid");
-                                            }
+                                            fileName = Path.Combine(ExportPathBox.Text, fileNamePrefix + trackName + " (Copy " + counter + ").mid");
                                             counter++;
                                         } while (File.Exists(fileName));
                                     }
@@ -539,30 +524,15 @@ namespace MIDI_Splitter_Lite
 
                                     string baseFileName = Path.GetFileNameWithoutExtension(MIDIPathBox.Text);
                                     string trackName = trackNamesList.ElementAt(0);
-                                    string fileName;
-
-                                    if (Settings.Default.FilePrefixBox)
-                                    {
-                                        fileName = Path.Combine(ExportPathBox.Text, trackName + ".mid");
-                                    }
-                                    else
-                                    {
-                                        fileName = Path.Combine(ExportPathBox.Text, baseFileName + " - " + trackName + ".mid");
-                                    }
+                                    string fileNamePrefix = Settings.Default.FilePrefixBox ? "" : baseFileName + " - ";
+                                    string fileName = Path.Combine(ExportPathBox.Text, fileNamePrefix + trackName + ".mid");
 
                                     if (File.Exists(fileName))
                                     {
                                         int counter = 1;
                                         do
                                         {
-                                            if (Settings.Default.FilePrefixBox)
-                                            {
-                                                fileName = Path.Combine(ExportPathBox.Text, trackName + " (Copy " + counter.ToString() + ").mid");
-                                            }
-                                            else
-                                            {
-                                                fileName = Path.Combine(ExportPathBox.Text, baseFileName + " - " + trackName + " (Copy " + counter.ToString() + ").mid");
-                                            }
+                                            fileName = Path.Combine(ExportPathBox.Text, fileNamePrefix + trackName + " (Copy " + counter + ").mid");
                                             counter++;
                                         } while (File.Exists(fileName));
                                     }

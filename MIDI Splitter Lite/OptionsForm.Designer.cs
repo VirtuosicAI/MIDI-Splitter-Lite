@@ -71,9 +71,9 @@
             this.FilePrefixBox.AutoSize = true;
             this.FilePrefixBox.Location = new System.Drawing.Point(12, 58);
             this.FilePrefixBox.Name = "FilePrefixBox";
-            this.FilePrefixBox.Size = new System.Drawing.Size(132, 17);
+            this.FilePrefixBox.Size = new System.Drawing.Size(153, 17);
             this.FilePrefixBox.TabIndex = 2;
-            this.FilePrefixBox.Text = "Add file name as prefix";
+            this.FilePrefixBox.Text = "Remove file name as prefix";
             this.toolTip.SetToolTip(this.FilePrefixBox, "Reads the name of each track from the MIDI file and displays it in the list.\r\nIf " +
         "multiple names exists for a given track, the latest one will be shown.");
             this.FilePrefixBox.UseVisualStyleBackColor = true;
