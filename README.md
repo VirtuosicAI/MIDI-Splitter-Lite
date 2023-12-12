@@ -50,3 +50,5 @@ MIDI Splitter Lite utilizes the Knuth–Morris–Pratt search algorithm to read 
 - C# implementation of KMP algorithm: https://gist.github.com/Nabid/fde41e7c2b0b681ac674ccc93c1daeb1
 - Searching for Patterns | Set 2 (KMP Algorithm): https://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/
 
+MIDI Splitter Lite utilizes David Gouveia's Midi Parser.
+- Github: https://github.com/davidluzgouveia/midi-parser
