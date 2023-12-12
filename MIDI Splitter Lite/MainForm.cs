@@ -231,6 +231,78 @@ namespace MIDI_Splitter_Lite
                         }
                         UpdateListViewColors();
                     }
+                    else if (Settings.Default.ReadTrackInstruments)
+                    {
+                        for (ushort i = 0; i < totalTracksShort; i++)
+                        {
+                            midiReader.Seek(4, SeekOrigin.Current);
+
+                            byte[] trackSize = new byte[4];
+                            midiReader.Read(trackSize, 0, trackSize.Length);
+                            if (BitConverter.IsLittleEndian)
+                                Array.Reverse(trackSize);
+                            int trackSizeInt = BitConverter.ToInt32(trackSize, 0);
+
+                            List<byte> tempArray = new List<byte>();
+                            if (trackSizeInt <= 4096)
+                            {
+                                byte[] trackNameData = new byte[trackSizeInt];
+                                midiReader.Read(trackNameData, 0, trackNameData.Length);
+                                tempArray.AddRange(trackNameData);
+                            }
+                            else
+                            {
+                                byte[] trackNameData = new byte[4096];
+                                midiReader.Read(trackNameData, 0, trackNameData.Length);
+                                midiReader.Seek(trackSizeInt - 4096, SeekOrigin.Current);
+                                tempArray.AddRange(trackNameData);
+                            }
+
+                            byte[] trackData = tempArray.ToArray();
+
+                            // Parse for instrument name
+                            string instrumentName = "Unknown"; // Default instrument name
+                            foreach (var midiEvent in ParseMIDIEvents(trackData))
+                            {
+                                if (midiEvent.IsProgramChangeEvent)
+                                {
+                                    instrumentName = GetInstrumentName(midiEvent.ProgramNumber);
+                                    break; // Break after finding the first Program Change event
+                                }
+                            }
+
+                            // Parse for track name
+                            string trackNameStr;
+                            byte[] searchPattern = { 0xFF, 0x03 };
+                            List<int> trackNameIndex = KMPSearch(trackData, searchPattern);
+
+                            if (trackNameIndex.Count > 0)
+                            {
+                                int lengthIndex = trackNameIndex.ElementAt(trackNameIndex.Count - 1) + 2;
+                                byte trackNameByteLength = trackData[lengthIndex];
+
+                                byte[] trackNameBytes = new byte[(int)trackNameByteLength];
+                                trackNameBytes = SubArray(trackData, lengthIndex + 1, (int)trackNameByteLength);
+
+                                trackNameStr = Encoding.UTF8.GetString(trackNameBytes);
+                            }
+                            else
+                            {
+                                trackNameStr = "Track " + (i + 1).ToString();
+                            }
+
+                            // Combine instrument name and track name
+                            trackNameStr = instrumentName + " - " + trackNameStr;
+
+                            // Sanitize the track name
+                            trackNameStr = SanitizeFileName(trackNameStr);
+
+                            string[] newRow = { (i + 1).ToString(), trackNameStr, trackSizeInt.ToString() };
+                            ListViewItem newItem = new ListViewItem(newRow);
+                            MIDIListView.Items.Add(newItem);
+                        }
+                        UpdateListViewColors();
+                    }
                     else
                     {
                         for (ushort i = 0; i < totalTracksShort; i++)
@@ -254,6 +326,112 @@ namespace MIDI_Splitter_Lite
                     }
                 }
             }
+        }
+
+        private class MIDIEvent
+        {
+            public bool IsProgramChangeEvent { get; set; }
+            public int ProgramNumber { get; set; }
+        }
+
+        private IEnumerable<MIDIEvent> ParseMIDIEvents(byte[] trackData)
+        {
+            List<MIDIEvent> events = new List<MIDIEvent>();
+            int index = 0;
+            byte? runningStatus = null;
+
+            while (index < trackData.Length)
+            {
+                // Handle delta time
+                while (index < trackData.Length && (trackData[index] & 0x80) != 0)
+                {
+                    index++;
+                }
+
+                if (index >= trackData.Length) break; // Check if end of data is reached
+
+                index++; // Skip the last delta time byte
+
+                if (index >= trackData.Length) break; // Check again after skipping
+
+                // Get event first byte
+                byte eventByte = trackData[index];
+
+                // Check if it's a running status
+                if ((eventByte & 0x80) == 0 && runningStatus.HasValue)
+                {
+                    eventByte = runningStatus.Value;
+                }
+                else
+                {
+                    index++;
+                    if (index >= trackData.Length) break; // Check if end of data is reached after increment
+                    runningStatus = eventByte;
+                }
+
+                if ((eventByte & 0xF0) == 0xC0) // Program Change event
+                {
+                    if (index >= trackData.Length) break;
+
+                    int programNumber = trackData[index];
+                    events.Add(new MIDIEvent { IsProgramChangeEvent = true, ProgramNumber = programNumber });
+                    index++;
+                }
+                else
+                {
+                    // Skip other types of events (not handled in this simplified version)
+                    // Normally you would handle other event types and their data lengths here
+                    runningStatus = null; // Clear running status for system-exclusive/meta events
+                }
+            }
+
+            return events;
+        }
+
+        private string GetInstrumentName(int programNumber)
+        {
+            string[] instruments = new string[]
+            {
+                "Acoustic Grand Piano", "Bright Acoustic Piano", "Electric Grand Piano", "Honky-Tonk Piano",
+                "Rhodes Piano", "Chorused Piano", "Harpsichord", "Clavinet",
+                "Celesta", "Glockenspiel", "Music Box", "Vibraphone",
+                "Marimba", "Xylophone", "Tubular Bells", "Dulcimer",
+                "Hammond Organ", "Percussive Organ", "Rock Organ", "Church Organ",
+                "Reed Organ", "Accordion", "Harmonica", "Tango Accordion",
+                "Acoustic Guitar - Nylon", "Acoustic Guitar - Steel", "Electric Guitar - Jazz", "Electric Guitar - Clean",
+                "Electric Guitar - Muted", "Overdriven Guitar", "Distortion Guitar", "Guitar Harmonics",
+                "Acoustic Bass", "Electric Bass - Finger", "Electric Bass - Pick", "Fretless Bass",
+                "Slap Bass 1", "Slap Bass 2", "Synth Bass 1", "Synth Bass 2",
+                "Violin", "Viola", "Cello", "Contrabass",
+                "Tremolo Strings", "Pizzicato Strings", "Orchestral Harp", "Timpani",
+                "String Ensemble 1", "String Ensemble 2", "Synth. Strings 1", "Synth. Strings 2",
+                "Choir Aahs", "Voice Oohs", "Synth Voice", "Orchestra Hit",
+                "Trumpet", "Trombone", "Tuba", "Muted Trumpet",
+                "French Horn", "Brass Section", "Synth. Brass 1", "Synth. Brass 2",
+                "Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax",
+                "Oboe", "English Horn", "Bassoon", "Clarinet",
+                "Piccolo", "Flute", "Recorder", "Pan Flute",
+                "Bottle Blow", "Shakuhachi", "Whistle", "Ocarina",
+                "Synth Lead 1 - Square", "Synth Lead 2 - Sawtooth", "Synth Lead 3 - Calliope", "Synth Lead 4 - Chiff",
+                "Synth Lead 5 - Charang", "Synth Lead 6 - Voice", "Synth Lead 7 - Fifths", "Synth Lead 8 - Brass + Lead",
+                "Synth Pad 1 - New Age", "Synth Pad 2 - Warm", "Synth Pad 3 - Polysynth", "Synth Pad 4 - Choir",
+                "Synth Pad 5 - Bowed", "Synth Pad 6 - Metallic", "Synth Pad 7 - Halo", "Synth Pad 8 - Sweep",
+                "FX 1 - Rain", "FX 2 - Soundtrack", "FX 3 - Crystal", "FX 4 - Atmosphere",
+                "FX 5 - Brightness", "FX 6 - Goblins", "FX 7 - Echoes", "FX 8 - Sci-Fi",
+                "Sitar", "Banjo", "Shamisen", "Koto",
+                "Kalimba", "Bagpipe", "Fiddle", "Shanai",
+                "Tinkle Bell", "Agogo", "Steel Drums", "Woodblock",
+                "Taiko Drum", "Melodic Tom", "Synth Drum", "Reverse Cymbal",
+                "Guitar Fret Noise", "Breath Noise", "Seashore", "Bird Tweet",
+                "Telephone Ring", "Helicopter", "Applause", "Gunshot"
+            };
+
+            if (programNumber >= 1 && programNumber <= 128)
+            {
+                return instruments[programNumber - 1]; // Array is zero-indexed
+            }
+
+            return "Unknown"; // Default case
         }
 
 

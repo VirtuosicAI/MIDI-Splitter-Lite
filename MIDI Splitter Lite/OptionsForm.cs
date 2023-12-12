@@ -19,6 +19,7 @@ namespace MIDI_Splitter_Lite
 
             CopyFirstTrackBox.Checked = Settings.Default.CopyFirstTrack;
             ReadTrackNamesBox.Checked = Settings.Default.ReadTrackNames;
+            ReadTrackInstrumentBox.Checked = Settings.Default.ReadTrackInstruments;
             FilePrefixBox.Checked = Settings.Default.FilePrefixBox;
 
             colorTextBox1.BackColor = Settings.Default.Color1;
@@ -71,6 +72,7 @@ namespace MIDI_Splitter_Lite
         {
             Settings.Default.CopyFirstTrack = CopyFirstTrackBox.Checked;
             Settings.Default.ReadTrackNames = ReadTrackNamesBox.Checked;
+            Settings.Default.ReadTrackInstruments = ReadTrackInstrumentBox.Checked;
             Settings.Default.FilePrefixBox = FilePrefixBox.Checked;
 
             Settings.Default.Color1 = colorTextBox1.BackColor;
