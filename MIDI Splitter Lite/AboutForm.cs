@@ -14,10 +14,5 @@ namespace MIDI_Splitter_Lite
         {
             Process.Start("https://github.com/VirtuosicAI");
         }
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/sn0w12");
-        }
     }
 }

@@ -7,6 +7,8 @@ Overview
 
 MIDI Splitter Lite is a simple, lightweight program that splits tracks from a single MIDI file into their own seperate MIDI files.
 
+This fork is focused on small features and quality of life changes i wanted to see in the original project such as sanitized track names to fix saving issues, colored coded tracks and removing the prefix from saved midi files.
+
 Usage
 ------------
 

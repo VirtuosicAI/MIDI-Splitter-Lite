@@ -59,8 +59,8 @@ namespace MIDI_Splitter_Lite
                     {
                         MIDIListView.Items[i].SubItems[1].Text = Settings.Default.ListTitles[i];
                     }
+                    UpdateListViewColors();
                 }
-                UpdateListViewColors();
             }
 
             SetupListViewContextMenu();
