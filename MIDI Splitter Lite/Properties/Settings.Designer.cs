@@ -224,5 +224,28 @@ namespace MIDI_Splitter_Lite.Properties {
                 this["Color7"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastOpenedFilePath {
+            get {
+                return ((string)(this["LastOpenedFilePath"]));
+            }
+            set {
+                this["LastOpenedFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection ListTitles {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ListTitles"]));
+            }
+            set {
+                this["ListTitles"] = value;
+            }
+        }
     }
 }

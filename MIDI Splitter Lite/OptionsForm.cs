@@ -10,10 +10,12 @@ namespace MIDI_Splitter_Lite
 {
     public partial class OptionsForm : Form
     {
-        int colorCount = 7;
-        public OptionsForm()
+        private MainForm mainForm;
+
+        public OptionsForm(MainForm mainForm)
         {
             InitializeComponent();
+            this.mainForm = mainForm;
 
             CopyFirstTrackBox.Checked = Settings.Default.CopyFirstTrack;
             ReadTrackNamesBox.Checked = Settings.Default.ReadTrackNames;
@@ -53,13 +55,13 @@ namespace MIDI_Splitter_Lite
                     color += item.ToString() + ",";
                 }
 
-                textbox.Text = color.Remove(color.Length - 1, 1).Replace(" ", "_");
+                textbox.Text = color.Remove(color.Length - 1, 1).Replace(", ", ",").Replace(" ", "_");
             }
         }
 
         private StringCollection saveTextBox(TextBox textbox)
         {
-            List<string> tempList = textbox.Text.ToLower().Replace(" ", "_").Split(',').ToList();
+            List<string> tempList = textbox.Text.ToLower().Replace(", ", ",").Replace(" ", "_").Split(',').ToList();
             StringCollection tempCollection = new StringCollection();
             tempCollection.AddRange(tempList.ToArray());
             return tempCollection;
@@ -88,6 +90,8 @@ namespace MIDI_Splitter_Lite
             Settings.Default.ColorText7 = saveTextBox(colorTextBox7);
 
             Settings.Default.Save();
+
+            mainForm.RequestRestart();
         }
 
         private void openColorPicker(TextBox textBox)
