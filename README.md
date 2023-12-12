@@ -24,7 +24,6 @@ Usage
 	- Color-Coded Track Naming: Personalize your tracks by assigning specific colors to them. Simply input the desired names for your tracks and choose the color you want them to be.
 
 	- Edit Track Names: Before splitting the tracks into individual tracks right click them to edit their names.
-		- Note: Should you alter any settings (except editing track names), you need to reload the MIDI file to ensure the changes are effectively applied. <br>
 
 4. Once the list is populated with tracks, select the track(s) you wish to be exported. To select multiple tracks, simply hold the CTRL key on your keyboard and left-click each track name in the list. You can also select all tracks in the list by pressing CTRL + A on your keyboard.
 
