@@ -143,5 +143,17 @@ namespace MIDI_Splitter_Lite
         {
             openColorPicker(colorTextBox7);
         }
+
+        private void ReadTrackNamesBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ReadTrackNamesBox.Checked && ReadTrackInstrumentBox.Checked)
+                ReadTrackInstrumentBox.CheckState = CheckState.Unchecked;
+        }
+
+        private void ReadTrackInstrumentBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ReadTrackNamesBox.Checked && ReadTrackInstrumentBox.Checked)
+                ReadTrackNamesBox.CheckState = CheckState.Unchecked;
+        }
     }
 }

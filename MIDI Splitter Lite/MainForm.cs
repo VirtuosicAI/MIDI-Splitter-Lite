@@ -53,14 +53,6 @@ namespace MIDI_Splitter_Lite
             if (!string.IsNullOrEmpty(lastOpenedFilePath) && File.Exists(lastOpenedFilePath))
             {
                 LoadMIDIFile(lastOpenedFilePath);
-                if (Settings.Default.ListTitles != null && Settings.Default.ListTitles.Count == MIDIListView.Items.Count)
-                {
-                    for (int i = 0; i < MIDIListView.Items.Count; i++)
-                    {
-                        MIDIListView.Items[i].SubItems[1].Text = Settings.Default.ListTitles[i];
-                    }
-                    UpdateListViewColors();
-                }
             }
 
             SetupListViewContextMenu();
@@ -138,6 +130,8 @@ namespace MIDI_Splitter_Lite
         {
             using (FileStream midiReader = new FileStream(filePath, FileMode.Open))
             {
+                var midiParser = new MidiParser.MidiFile(midiReader);
+
                 midiReader.Seek(4, SeekOrigin.Begin);
 
                 byte[] headerSize = new byte[4];
@@ -177,13 +171,7 @@ namespace MIDI_Splitter_Lite
                     {
                         for (ushort i = 0; i < totalTracksShort; i++)
                         {
-                            midiReader.Seek(4, SeekOrigin.Current);
-
-                            byte[] trackSize = new byte[4];
-                            midiReader.Read(trackSize, 0, trackSize.Length);
-                            if (BitConverter.IsLittleEndian)
-                                Array.Reverse(trackSize);
-                            int trackSizeInt = BitConverter.ToInt32(trackSize, 0);
+                            int trackSizeInt = FindTrackSize(midiReader);
 
                             List<byte> tempArray = new List<byte>();
                             if (trackSizeInt <= 4096)
@@ -233,73 +221,39 @@ namespace MIDI_Splitter_Lite
                     }
                     else if (Settings.Default.ReadTrackInstruments)
                     {
-                        for (ushort i = 0; i < totalTracksShort; i++)
+                        var channelInstrumentMap = new Dictionary<int, string>(); // Dictionary to store the instrument for each channel
+
+                        for (int i = 0; i < midiParser.TracksCount; i++)
                         {
-                            midiReader.Seek(4, SeekOrigin.Current);
+                            int trackSizeInt = FindTrackSize(midiReader);
+                            midiReader.Seek(trackSizeInt, SeekOrigin.Current);
 
-                            byte[] trackSize = new byte[4];
-                            midiReader.Read(trackSize, 0, trackSize.Length);
-                            if (BitConverter.IsLittleEndian)
-                                Array.Reverse(trackSize);
-                            int trackSizeInt = BitConverter.ToInt32(trackSize, 0);
+                            var trackEvents = midiParser.Tracks[i].MidiEvents;
+                            string instrumentName = "Unknown";
 
-                            List<byte> tempArray = new List<byte>();
-                            if (trackSizeInt <= 4096)
+                            foreach (var midiEvent in trackEvents)
                             {
-                                byte[] trackNameData = new byte[trackSizeInt];
-                                midiReader.Read(trackNameData, 0, trackNameData.Length);
-                                tempArray.AddRange(trackNameData);
-                            }
-                            else
-                            {
-                                byte[] trackNameData = new byte[4096];
-                                midiReader.Read(trackNameData, 0, trackNameData.Length);
-                                midiReader.Seek(trackSizeInt - 4096, SeekOrigin.Current);
-                                tempArray.AddRange(trackNameData);
-                            }
-
-                            byte[] trackData = tempArray.ToArray();
-
-                            // Parse for instrument name
-                            string instrumentName = "Unknown"; // Default instrument name
-                            foreach (var midiEvent in ParseMIDIEvents(trackData))
-                            {
-                                if (midiEvent.IsProgramChangeEvent)
+                                if (midiEvent.MidiEventType == MidiParser.MidiEventType.ProgramChange)
                                 {
-                                    instrumentName = GetInstrumentName(midiEvent.ProgramNumber);
-                                    break; // Break after finding the first Program Change event
+                                    int channel = midiEvent.Arg1 - 1;
+                                    if (channelInstrumentMap.ContainsKey(channel))
+                                    {
+                                        instrumentName = channelInstrumentMap[channel];
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        instrumentName = GetInstrumentName(midiEvent.Arg2);
+                                        channelInstrumentMap[channel] = instrumentName;
+                                        break;
+                                    }
                                 }
                             }
 
-                            // Parse for track name
-                            string trackNameStr;
-                            byte[] searchPattern = { 0xFF, 0x03 };
-                            List<int> trackNameIndex = KMPSearch(trackData, searchPattern);
-
-                            if (trackNameIndex.Count > 0)
-                            {
-                                int lengthIndex = trackNameIndex.ElementAt(trackNameIndex.Count - 1) + 2;
-                                byte trackNameByteLength = trackData[lengthIndex];
-
-                                byte[] trackNameBytes = new byte[(int)trackNameByteLength];
-                                trackNameBytes = SubArray(trackData, lengthIndex + 1, (int)trackNameByteLength);
-
-                                trackNameStr = Encoding.UTF8.GetString(trackNameBytes);
-                            }
-                            else
-                            {
-                                trackNameStr = "Track " + (i + 1).ToString();
-                            }
-
-                            // Combine instrument name and track name
-                            trackNameStr = instrumentName + " - " + trackNameStr;
-
-                            // Sanitize the track name
-                            trackNameStr = SanitizeFileName(trackNameStr);
-
-                            string[] newRow = { (i + 1).ToString(), trackNameStr, trackSizeInt.ToString() };
-                            ListViewItem newItem = new ListViewItem(newRow);
-                            MIDIListView.Items.Add(newItem);
+                            string trackName = instrumentName;
+                            string[] listViewRow = { (i + 1).ToString(), trackName, trackSizeInt.ToString() };
+                            ListViewItem listViewItem = new ListViewItem(listViewRow);
+                            MIDIListView.Items.Add(listViewItem);
                         }
                         UpdateListViewColors();
                     }
@@ -307,13 +261,7 @@ namespace MIDI_Splitter_Lite
                     {
                         for (ushort i = 0; i < totalTracksShort; i++)
                         {
-                            midiReader.Seek(4, SeekOrigin.Current);
-
-                            byte[] trackSize = new byte[4];
-                            midiReader.Read(trackSize, 0, trackSize.Length);
-                            if (BitConverter.IsLittleEndian)
-                                Array.Reverse(trackSize);
-                            int trackSizeInt = BitConverter.ToInt32(trackSize, 0);
+                            int trackSizeInt = FindTrackSize(midiReader);
                             midiReader.Seek(trackSizeInt, SeekOrigin.Current);
 
                             string trackNameStr = "Track " + (i + 1).ToString();
@@ -328,64 +276,16 @@ namespace MIDI_Splitter_Lite
             }
         }
 
-        private class MIDIEvent
+        private int FindTrackSize(FileStream midiReader)
         {
-            public bool IsProgramChangeEvent { get; set; }
-            public int ProgramNumber { get; set; }
-        }
+            midiReader.Seek(4, SeekOrigin.Current);
 
-        private IEnumerable<MIDIEvent> ParseMIDIEvents(byte[] trackData)
-        {
-            List<MIDIEvent> events = new List<MIDIEvent>();
-            int index = 0;
-            byte? runningStatus = null;
-
-            while (index < trackData.Length)
-            {
-                // Handle delta time
-                while (index < trackData.Length && (trackData[index] & 0x80) != 0)
-                {
-                    index++;
-                }
-
-                if (index >= trackData.Length) break; // Check if end of data is reached
-
-                index++; // Skip the last delta time byte
-
-                if (index >= trackData.Length) break; // Check again after skipping
-
-                // Get event first byte
-                byte eventByte = trackData[index];
-
-                // Check if it's a running status
-                if ((eventByte & 0x80) == 0 && runningStatus.HasValue)
-                {
-                    eventByte = runningStatus.Value;
-                }
-                else
-                {
-                    index++;
-                    if (index >= trackData.Length) break; // Check if end of data is reached after increment
-                    runningStatus = eventByte;
-                }
-
-                if ((eventByte & 0xF0) == 0xC0) // Program Change event
-                {
-                    if (index >= trackData.Length) break;
-
-                    int programNumber = trackData[index];
-                    events.Add(new MIDIEvent { IsProgramChangeEvent = true, ProgramNumber = programNumber });
-                    index++;
-                }
-                else
-                {
-                    // Skip other types of events (not handled in this simplified version)
-                    // Normally you would handle other event types and their data lengths here
-                    runningStatus = null; // Clear running status for system-exclusive/meta events
-                }
-            }
-
-            return events;
+            byte[] trackSize = new byte[4];
+            midiReader.Read(trackSize, 0, trackSize.Length);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(trackSize);
+            int trackSizeInt = BitConverter.ToInt32(trackSize, 0);
+            return trackSizeInt;
         }
 
         private string GetInstrumentName(int programNumber)
@@ -426,9 +326,9 @@ namespace MIDI_Splitter_Lite
                 "Telephone Ring", "Helicopter", "Applause", "Gunshot"
             };
 
-            if (programNumber >= 1 && programNumber <= 128)
+            if (programNumber >= 0 && programNumber < instruments.Length)
             {
-                return instruments[programNumber - 1]; // Array is zero-indexed
+                return instruments[programNumber];
             }
 
             return "Unknown"; // Default case
@@ -1131,17 +1031,10 @@ namespace MIDI_Splitter_Lite
             {
                 Settings.Default.LastOpenedFilePath = MIDIPathBox.Text;
                 Settings.Default.ExportPath = ExportPathBox.Text;
-
-                Settings.Default.ListTitles = new StringCollection();
-                foreach (ListViewItem item in MIDIListView.Items)
-                {
-                    Settings.Default.ListTitles.Add(item.SubItems[1].Text);
-                }
                 Settings.Default.Save();
             } else
             {
                 Settings.Default.LastOpenedFilePath = null;
-                Settings.Default.ListTitles = null;
                 Settings.Default.ExportPath = ExportPathBox.Text;
                 Settings.Default.Save();
             }

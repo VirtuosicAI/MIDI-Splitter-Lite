@@ -34,6 +34,7 @@
             this.ReadTrackNamesBox = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.FilePrefixBox = new System.Windows.Forms.CheckBox();
+            this.ReadTrackInstrumentBox = new System.Windows.Forms.CheckBox();
             this.colorTextBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.colorPicker5 = new System.Windows.Forms.Button();
             this.colorPicker6 = new System.Windows.Forms.Button();
             this.colorPicker7 = new System.Windows.Forms.Button();
-            this.ReadTrackInstrumentBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // CopyFirstTrackBox
@@ -82,6 +82,7 @@
             this.toolTip.SetToolTip(this.ReadTrackNamesBox, "Reads the name of each track from the MIDI file and displays it in the list.\r\nIf " +
         "multiple names exists for a given track, the latest one will be shown.");
             this.ReadTrackNamesBox.UseVisualStyleBackColor = true;
+            this.ReadTrackNamesBox.CheckedChanged += new System.EventHandler(this.ReadTrackNamesBox_CheckedChanged);
             // 
             // toolTip
             // 
@@ -100,6 +101,19 @@
             this.toolTip.SetToolTip(this.FilePrefixBox, "Reads the name of each track from the MIDI file and displays it in the list.\r\nIf " +
         "multiple names exists for a given track, the latest one will be shown.");
             this.FilePrefixBox.UseVisualStyleBackColor = true;
+            // 
+            // ReadTrackInstrumentBox
+            // 
+            this.ReadTrackInstrumentBox.AutoSize = true;
+            this.ReadTrackInstrumentBox.Location = new System.Drawing.Point(12, 58);
+            this.ReadTrackInstrumentBox.Name = "ReadTrackInstrumentBox";
+            this.ReadTrackInstrumentBox.Size = new System.Drawing.Size(135, 17);
+            this.ReadTrackInstrumentBox.TabIndex = 24;
+            this.ReadTrackInstrumentBox.Text = "Read track instruments";
+            this.toolTip.SetToolTip(this.ReadTrackInstrumentBox, "Reads the name of each track from the MIDI file and displays it in the list.\r\nIf " +
+        "multiple names exists for a given track, the latest one will be shown.");
+            this.ReadTrackInstrumentBox.UseVisualStyleBackColor = true;
+            this.ReadTrackInstrumentBox.CheckedChanged += new System.EventHandler(this.ReadTrackInstrumentBox_CheckedChanged);
             // 
             // colorTextBox4
             // 
@@ -289,18 +303,6 @@
             this.colorPicker7.Text = "Choose";
             this.colorPicker7.UseVisualStyleBackColor = true;
             this.colorPicker7.Click += new System.EventHandler(this.colorPicker7_Click);
-            // 
-            // ReadTrackInstrumentBox
-            // 
-            this.ReadTrackInstrumentBox.AutoSize = true;
-            this.ReadTrackInstrumentBox.Location = new System.Drawing.Point(12, 58);
-            this.ReadTrackInstrumentBox.Name = "ReadTrackInstrumentBox";
-            this.ReadTrackInstrumentBox.Size = new System.Drawing.Size(135, 17);
-            this.ReadTrackInstrumentBox.TabIndex = 24;
-            this.ReadTrackInstrumentBox.Text = "Read track instruments";
-            this.toolTip.SetToolTip(this.ReadTrackInstrumentBox, "Reads the name of each track from the MIDI file and displays it in the list.\r\nIf " +
-        "multiple names exists for a given track, the latest one will be shown.");
-            this.ReadTrackInstrumentBox.UseVisualStyleBackColor = true;
             // 
             // OptionsForm
             // 
